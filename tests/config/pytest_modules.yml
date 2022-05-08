@@ -1763,13 +1763,13 @@ slimfastq:
   - modules/slimfastq/**
   - tests/modules/slimfastq/**
 
-snapaligner/index:
-  - modules/snapaligner/index/**
-  - tests/modules/snapaligner/index/**
-
 snapaligner/align:
   - modules/snapaligner/align/**
   - tests/modules/snapaligner/align/**
+
+snapaligner/index:
+  - modules/snapaligner/index/**
+  - tests/modules/snapaligner/index/**
 
 snpdists:
   - modules/snpdists/**
@@ -1802,6 +1802,10 @@ spatyper:
 sratools/fasterqdump:
   - modules/sratools/fasterqdump/**
   - tests/modules/sratools/fasterqdump/**
+
+sratools/ncbisettings:
+  - modules/sratools/ncbisettings/**
+  - tests/modules/sratools/ncbisettings/**
 
 sratools/prefetch:
   - modules/sratools/prefetch/**
