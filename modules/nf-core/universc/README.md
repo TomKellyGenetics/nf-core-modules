@@ -67,8 +67,11 @@ These are set as default in universc/main.nf:
 
 ```
     container "nfcore/universc:1.2.5-dev"
-    if (workflow.containerEngine == 'docker' | workflow.containerEngine == 'podman'){
-        containerOptions = "--user root"
+    if (workflow.containerEngine == 'docker'){
+        containerOptions = ""
+    }
+    if (workflow.containerEngine == 'podman'){
+        containerOptions = "--runtime /usr/bin/crun --userns=keep-id --systemd=always"
     }
     if (workflow.containerEngine == 'singularity'){
         containerOptions = "--writable"
@@ -80,7 +83,7 @@ as one of the following before running nextflow.
 
 ```
 export PROFILE="docker"
-expert PROFILE="podman"
+export PROFILE="podman"
 export PROFILE="singularity"
 ```
 

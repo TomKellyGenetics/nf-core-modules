@@ -7,8 +7,11 @@ process UNIVERSC {
         conda (params.enable_conda ? "hcc::cellranger=3.0.2" : null)
     }
     container "nfcore/universc:1.2.5-dev"
-    if (workflow.containerEngine == 'docker' | workflow.containerEngine == 'podman'){
-        containerOptions = "--user root"
+    if (workflow.containerEngine == 'docker'){
+        containerOptions = ""
+    }
+    if (workflow.containerEngine == 'podman'){
+        containerOptions = "--runtime /usr/bin/crun --userns=keep-id --systemd=always"
     }
     if (workflow.containerEngine == 'singularity'){
         containerOptions = "--writable"
