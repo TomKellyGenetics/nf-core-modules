@@ -6,7 +6,7 @@ process UNIVERSC {
         exit 1, "Conda environments cannot be used when using the Cell Ranger tool. Please use docker or singularity containers."
         conda (params.enable_conda ? "hcc::cellranger=3.0.2" : null)
     }
-    container "nfcore/universc:1.2.4"
+    container "nfcore/universc:1.2.5-dev"
     if (workflow.containerEngine == 'docker' | workflow.containerEngine == 'podman'){
         containerOptions = "--user root"
     }
@@ -42,8 +42,7 @@ process UNIVERSC {
         --jobmode "local" \\
         --localcores ${task.cpus} \\
         --localmem ${task.memory.toGiga()} \\
-        --per-cell-data \\
-        $args
+       $args
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

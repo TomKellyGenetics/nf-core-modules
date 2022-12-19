@@ -45,10 +45,10 @@ process {
 
 ...
     withName: CELLRANGER_MKGTF {
-        container = "nfcore/universc:1.2.4"
+        container = "nfcore/universc:1.2.5-dev"
     }
     withName: CELLRANGER_MKREF{
-       container = "nfcore/universc:1.2.4"
+       container = "nfcore/universc:1.2.5-dev"
     }
 ...
 }
@@ -66,7 +66,7 @@ and for singularity use the `--writeable` parameter.
 These are set as default in universc/main.nf:
 
 ```
-    container "nfcore/universc:1.2.4"
+    container "nfcore/universc:1.2.5-dev"
     if (workflow.containerEngine == 'docker' | workflow.containerEngine == 'podman'){
         containerOptions = "--user root"
     }
@@ -101,7 +101,7 @@ modify this code provided that they also contain this license.
 
 The tomkellygenetics/universc:<VERSION> container is automatically updated with tomkellygenetics/universc:latest.
 
-A stable release is mirrored at nfcore/universc:1.2.4 and will be updated as needed.
+A stable release is mirrored at nfcore/universc:1.2.5-dev and will be updated as needed.
 
 To build an updated container use the Dockerfile provided here:
 

@@ -31,3 +31,55 @@ workflow test_universc_10x {
         CELLRANGER_MKREF.out.reference
     )
 }
+
+workflow test_universc_dropseq {
+
+    input = [ [ id:'123', technology:'dropseq', chemistry:'SC3Pv3', single_end:false, strandedness:'forward', samples: ["test_10x"] ], // meta map
+             [ file(params.test_data['homo_sapiens']['illumina']['test_10x_1_fastq_gz'], checkIfExists: true),
+              file(params.test_data['homo_sapiens']['illumina']['test_10x_2_fastq_gz'], checkIfExists: true)
+        ]
+    ]
+
+    fasta = file(params.test_data['homo_sapiens']['genome']['genome_fasta'], checkIfExists: true)
+    gtf = file(params.test_data['homo_sapiens']['genome']['genome_gtf'], checkIfExists: true)
+    reference_name = "homo_sapiens_chr22_reference"
+
+    CELLRANGER_MKGTF ( gtf )
+
+    CELLRANGER_MKREF (
+        fasta,
+        CELLRANGER_MKGTF.out.gtf,
+        reference_name
+    )
+
+    UNIVERSC (
+        input,
+        CELLRANGER_MKREF.out.reference
+    )
+}
+
+workflow test_universc_icell8 {
+
+    input = [ [ id:'123', technology:'icell8', chemistry:'SC3Pv3', single_end:false, strandedness:'forward', samples: ["test_10x"] ], // meta map
+             [ file(params.test_data['homo_sapiens']['illumina']['test_10x_1_fastq_gz'], checkIfExists: true),
+              file(params.test_data['homo_sapiens']['illumina']['test_10x_2_fastq_gz'], checkIfExists: true)
+        ]
+    ]
+
+    fasta = file(params.test_data['homo_sapiens']['genome']['genome_fasta'], checkIfExists: true)
+    gtf = file(params.test_data['homo_sapiens']['genome']['genome_gtf'], checkIfExists: true)
+    reference_name = "homo_sapiens_chr22_reference"
+
+    CELLRANGER_MKGTF ( gtf )
+
+    CELLRANGER_MKREF (
+        fasta,
+        CELLRANGER_MKGTF.out.gtf,
+        reference_name
+    )
+
+    UNIVERSC (
+        input,
+        CELLRANGER_MKREF.out.reference
+    )
+}
